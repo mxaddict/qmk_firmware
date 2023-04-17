@@ -52,7 +52,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
         KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                        KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,
   //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
-                                  KC_ESC,   TO(0),  KC_TAB,     KC_ENT,   TO(2), KC_LALT
+                                  KC_ESC,   TO(0),  KC_TAB,     KC_ENT, XXXXXXX, KC_LALT
   //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
   ),
 
@@ -106,21 +106,6 @@ void oled_render_status(void) {
 
     oled_set_cursor(1, 14);
     oled_write(wpm, false);
-}
-
-void render_bootmagic_status(bool status) {
-    /* Show Ctrl-Gui Swap options */
-    static const char PROGMEM logo[][2][3] = {
-        {{0x97, 0x98, 0}, {0xb7, 0xb8, 0}},
-        {{0x95, 0x96, 0}, {0xb5, 0xb6, 0}},
-    };
-    if (status) {
-        oled_write_ln_P(logo[0][0], false);
-        oled_write_ln_P(logo[0][1], false);
-    } else {
-        oled_write_ln_P(logo[1][0], false);
-        oled_write_ln_P(logo[1][1], false);
-    }
 }
 
 uint16_t timer;
