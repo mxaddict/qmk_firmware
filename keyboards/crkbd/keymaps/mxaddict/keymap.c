@@ -44,6 +44,10 @@ static const char* layer_names[] = {
 #define CLOSE LALT(KC_F4)
 #define TASKS C(S(KC_ESC))
 #define CALC KC_CALCULATOR
+#define C_TAB C(TAB)
+#define CS_TAB C(S(TAB))
+#define CA_TAB C(A(TAB))
+#define CSA_TAB C(S(A(TAB)))
 #define PRINT KC_PRINT_SCREEN
 #define GUI_BS GUI_T(KC_BSPC)
 #define C_T_ESC CTL_T(KC_ESC)
@@ -67,7 +71,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
         TASKS, XXXXXXX,    CALC, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX,   PRINT, XXXXXXX,   CLOSE,
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-      XXXXXXX, XXXXXXX,  S(TAB),     TAB, XXXXXXX,                      XXXXXXX,     ALT,     CTL, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX,  CS_TAB,   C_TAB, XXXXXXX,                      XXXXXXX, CSA_TAB,  CA_TAB, XXXXXXX, XXXXXXX,
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
