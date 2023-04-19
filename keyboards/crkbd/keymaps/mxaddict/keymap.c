@@ -65,9 +65,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_HOT] = LAYOUT_split_3x5_3(
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+        TASKS, XXXXXXX,    CALC, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX,   PRINT, XXXXXXX,   CLOSE,
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-      XXXXXXX,    CALC,  S(TAB),     TAB, XXXXXXX,                      XXXXXXX,     ALT,     CTL,   PRINT,   TASKS,
+      XXXXXXX, XXXXXXX,  S(TAB),     TAB, XXXXXXX,                      XXXXXXX,     ALT,     CTL, XXXXXXX, XXXXXXX,
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
@@ -113,7 +113,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_NAV] = LAYOUT_split_3x5_3(
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-        TASKS, XXXXXXX, XXXXXXX,    CALC, XXXXXXX,                      XXXXXXX,   PRINT, XXXXXXX, XXXXXXX, XXXXXXX,
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
       XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP,  KC_END,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX,
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
