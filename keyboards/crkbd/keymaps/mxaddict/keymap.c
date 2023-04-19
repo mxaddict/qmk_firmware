@@ -21,13 +21,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #include <stdio.h>
 
 enum layers {
-  _TEXT,
-  _NAV,
-  _SYM,
+    _TXT,
+    _HOT,
+    _NUM,
+    _FUN,
+    _SYM,
+    _NAV,
+};
+
+static const char* layer_names[] = {
+    "TXT",
+    "HOT",
+    "NUM",
+    "FUN",
+    "SYM",
+    "NAV",
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
-  [_TEXT] = LAYOUT_split_3x5_3(
+  [_TXT] = LAYOUT_split_3x5_3(
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
          KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                         KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
@@ -35,20 +47,43 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,
   //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
-                                 KC_ESC,  KC_LSFT,  KC_SPC,     KC_ENT,   MO(1), KC_LCTL
+                  CTL_T(KC_ESC),   SFT_T(KC_CAPS),  KC_SPC,   KC_ENTER,   ALT_T(KC_BSPC), TO(_HOT)
   //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
-
   ),
 
-  [_NAV] = LAYOUT_split_3x5_3(
+  [_HOT] = LAYOUT_split_3x5_3(
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+      XXXXXXX, XXXXXXX,TO(_SYM),TO(_NUM), XXXXXXX,                      XXXXXXX,TO(_NAV),TO(_FUN), XXXXXXX, XXXXXXX,
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+      KC_LGUI, KC_LSFT, KC_LALT, KC_LCTL, XXXXXXX,                      XXXXXXX, KC_RCTL, KC_RALT, KC_RSFT, KC_RGUI,
+  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
+                                TO(_TXT), _______,  KC_TAB,     KC_TAB, _______, _______
+  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
+  ),
+
+  [_NUM] = LAYOUT_split_3x5_3(
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+      XXXXXXX, XXXXXXX,  KC_DLR, KC_LPRN, XXXXXXX,                      XXXXXXX, KC_RPRN, KC_PERC, XXXXXXX, XXXXXXX,
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
          KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-       KC_F12, KC_HOME, KC_PGDN, KC_PGUP,  KC_END,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT,  KC_F11,
-  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                        KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,
+      KC_EXLM, KC_ASTR, KC_MINS, KC_PLUS, XXXXXXX,                      XXXXXXX,  KC_EQL, KC_COMM,  KC_DOT, KC_SLSH,
   //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
-                                  KC_ESC,   MO(2),  KC_TAB,     KC_ENT, _______, KC_LALT
+                                TO(_TXT), _______, _______,    _______, _______, _______
+  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
+  ),
+
+  [_FUN] = LAYOUT_split_3x5_3(
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+        KC_F1,   KC_F2,   KC_F3,   KC_F4, XXXXXXX,                      XXXXXXX,   KC_F5,   KC_F6,   KC_F7,   KC_F8,
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+        KC_F9,  KC_F10,  KC_F11,  KC_F12, XXXXXXX,                      XXXXXXX,  KC_F13,  KC_F14,  KC_F15,  KC_F16,
+  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
+                                TO(_TXT), _______, _______,    _______, _______, _______
   //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
   ),
 
@@ -60,7 +95,19 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
       XXXXXXX, XXXXXXX,  KC_EQL, KC_PLUS, XXXXXXX,                      XXXXXXX, KC_MINS, KC_UNDS, XXXXXXX, XXXXXXX,
   //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
-                                  KC_ESC, _______,  KC_SPC,     KC_ENT, _______, KC_LCTL
+                                TO(_TXT), _______, _______,    _______, _______, _______
+  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
+  ),
+
+  [_NAV] = LAYOUT_split_3x5_3(
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+      XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP,  KC_END,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX,
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+      XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX,                      XXXXXXX, KC_MPRV, KC_MNXT, KC_MPLY, XXXXXXX,
+  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
+                                TO(_TXT), _______, _______,    _______, _______, _______
   //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
   )
 };
@@ -120,44 +167,31 @@ oled_rotation_t oled_init_user(oled_rotation_t rotation) {
     return OLED_ROTATION_270;
 }
 
-static char wpm[4];
 void oled_render_status(void) {
     if (!is_keyboard_master()) return;
-    oled_set_cursor(1, 7);
-    oled_write_P(PSTR("MODE"), false);
-    oled_set_cursor(1, 8);
-    oled_write_P(PSTR("----"), false);
+    oled_set_cursor(0, 5);
+    oled_write_ln_P(PSTR("MODE"), false);
+    oled_write_ln_P(PSTR("--"), false);
+    oled_write_ln(layer_names[get_highest_layer(layer_state)], false);
+    oled_write_ln("", false);
 
-    oled_set_cursor(1, 9);
-    switch (get_highest_layer(layer_state)) {
-        case _TEXT:
-            oled_write_P(PSTR("TEXT"), false);
-            break;
-        case _NAV:
-            oled_write_P(PSTR(" NAV"), false);
-            break;
-        case _SYM:
-            oled_write_P(PSTR(" SYM"), false);
-            break;
-        default:
-            oled_write_P(PSTR("ERRR"), false);
-            break;
-    }
-
+    char wpm[4];
     sprintf(wpm, "%03d", get_current_wpm());
+    oled_write_ln_P(PSTR("WPM"), false);
+    oled_write_ln_P(PSTR("--"), false);
+    oled_write_ln(wpm, false);
+    oled_write_ln("", false);
 
-    oled_set_cursor(1, 12);
-    oled_write_P(PSTR("WPM"), false);
-    oled_set_cursor(1, 13);
-    oled_write_P(PSTR("---"), false);
-
-    oled_set_cursor(1, 14);
-    oled_write(wpm, false);
+    led_t led_state = host_keyboard_led_state();
+    oled_write_ln_P(PSTR("CAP"), false);
+    oled_write_ln_P(PSTR("--"), false);
+    oled_write_ln_P(led_state.caps_lock ? PSTR("YES") : PSTR("NO"), false);
 }
 
 uint16_t timer;
 uint16_t timer_offset;
 void oled_render_glitch(void) {
+    // TODO: see if we can't get a better glitch effect
     oled_set_cursor(0, 0);
 
     uint16_t time = timer_elapsed(timer);
@@ -170,14 +204,15 @@ void oled_render_glitch(void) {
             screen[i] = *reader.current_element;
         }
 
-        int shift = 2 + rand() % 8;
-        int carry = 0;
+        int shift = rand() % 9;
         while (shift--) {
-            for (int i = 0; i < OLED_MATRIX_SIZE; ++i) {
-                int next = (screen[i] & 1) ? 0x80 : 0;
-                screen[i] = carry | (screen[i] >> 1);
-                carry = next;
+            for (int i = OLED_MATRIX_SIZE-1; i > 0; i--) {
+                screen[i] >>= 1;
+                if (screen[i-1] & 0x01) {
+                    screen[i] |= 0x80;
+                }
             }
+            screen[0] >>= 1;
         }
 
         oled_write_raw(screen, OLED_MATRIX_SIZE);
