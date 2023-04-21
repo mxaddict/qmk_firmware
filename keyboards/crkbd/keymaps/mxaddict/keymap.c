@@ -22,36 +22,45 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 enum layers {
     _TXT,
-    _HOT,
+    _NAV,
     _NUM,
     _FUN,
-    _SYM,
-    _NAV,
 };
 
 static const char* layer_names[] = {
     "TXT",
-    "HOT",
+    "NAV",
     "NUM",
     "FUN",
-    "SYM",
-    "NAV",
 };
 
 #define TAB KC_TAB
-#define ALT KC_LALT
-#define CTL KC_LCTL
-#define CLOSE LALT(KC_F4)
-#define TASKS C(S(KC_ESC))
+#define ESC KC_ESC
+#define CLOSE C(KC_W)
+#define QUIT LALT(KC_F4)
+#define TASKS C(S(ESC))
 #define CALC KC_CALCULATOR
+#define PRINT KC_PRINT_SCREEN
+#define UNDO C(KC_Z)
+#define CUT C(KC_X)
+#define COPY C(KC_C)
+#define PASTE C(KC_V)
+#define RELOAD C(KC_R)
+#define SAVE C(KC_S)
+#define SELECT C(KC_A)
+#define FILES LGUI(KC_E)
+#define DESK LGUI(KC_D)
+#define RUN LGUI(KC_R)
+#define SEARCH LGUI(KC_S)
+
 #define C_TAB C(TAB)
 #define CS_TAB C(S(TAB))
 #define CA_TAB C(A(TAB))
 #define CSA_TAB C(S(A(TAB)))
-#define PRINT KC_PRINT_SCREEN
-#define GUI_BS GUI_T(KC_BSPC)
-#define C_T_ESC CTL_T(KC_ESC)
-#define S_T_CAPS SFT_T(KC_CAPS)
+
+#define NAV(kc) LT(_NAV, kc)
+#define NUM(kc) LT(_NUM, kc)
+#define FUN(kc) LT(_NUM, kc)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -63,65 +72,41 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
          KC_Z,    KC_X,    KC_C,    KC_V,    KC_B,                         KC_N,    KC_M, KC_COMM,  KC_DOT, KC_SLSH,
   //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
-                                 C_T_ESC,S_T_CAPS,  KC_SPC,   KC_ENTER,  GUI_BS,MO(_HOT)
-  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
-  ),
-
-  [_HOT] = LAYOUT_split_3x5_3(
-  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-        TASKS, XXXXXXX,    CALC, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX,   PRINT, XXXXXXX,   CLOSE,
-  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-      XXXXXXX, XXXXXXX,  CS_TAB,   C_TAB, XXXXXXX,                      XXXXXXX, CSA_TAB,  CA_TAB, XXXXXXX, XXXXXXX,
-  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
-                                MO(_NUM),  KC_TAB,MO(_SYM),   _______, _______, _______
-  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
-  ),
-
-  [_NUM] = LAYOUT_split_3x5_3(
-  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-      XXXXXXX, XXXXXXX,  KC_DLR, KC_LPRN, XXXXXXX,                      XXXXXXX, KC_RPRN, KC_PERC, XXXXXXX, XXXXXXX,
-  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
-  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-      KC_EXLM, KC_ASTR, KC_MINS, KC_PLUS, XXXXXXX,                      XXXXXXX,  KC_EQL, KC_COMM,  KC_DOT, KC_SLSH,
-  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
-                                 _______, _______, _______,   MO(_NAV), _______, MO(_FUN)
-  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
-  ),
-
-  [_SYM] = LAYOUT_split_3x5_3(
-  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-      KC_EXLM,   KC_AT, KC_HASH,  KC_DLR, XXXXXXX,                      XXXXXXX, KC_PERC, KC_CIRC, KC_AMPR, KC_ASTR,
-  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-      KC_BSLS, KC_LBRC, KC_LCBR, KC_LPRN, XXXXXXX,                      XXXXXXX, KC_RPRN, KC_RCBR, KC_RBRC, KC_PIPE,
-  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-       KC_EQL, KC_PLUS,KC_TILDE,KC_QUOTE, XXXXXXX,                      XXXXXXX, KC_DQUO,KC_GRAVE, KC_MINS, KC_UNDS,
-  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
-                                 _______, _______, _______,   MO(_NAV), _______, MO(_FUN)
-  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
-  ),
-
-  [_FUN] = LAYOUT_split_3x5_3(
-  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-        KC_F1,   KC_F2,   KC_F3,   KC_F4, XXXXXXX,                      XXXXXXX,   KC_F5,   KC_F6,   KC_F7,   KC_F8,
-  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-        KC_F9,  KC_F10,  KC_F11,  KC_F12, XXXXXXX,                      XXXXXXX,  KC_F13,  KC_F14,  KC_F15,  KC_F16,
-  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
-                                 _______, _______, _______,    _______, _______, _______
+                                NAV(ESC), KC_LSFT,  KC_SPC,   KC_ENTER, KC_BSPC,NUM(TAB)
   //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
   ),
 
   [_NAV] = LAYOUT_split_3x5_3(
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+         QUIT,   CLOSE,  CS_TAB,   C_TAB,  RELOAD,                        TASKS,    CALC,   PRINT,     RUN,  SEARCH,
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+       SELECT,    SAVE, CSA_TAB,  CA_TAB,   FILES,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX,
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+         UNDO,     CUT,    COPY,   PASTE,    DESK,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX,
+  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
+                                 _______, _______, _______,    _______, KC_RGUI,FUN(TAB)
+  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
+  ),
+
+  [_NUM] = LAYOUT_split_3x5_3(
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+         KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                         KC_6,    KC_7,    KC_8,    KC_9,    KC_0,
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+      KC_BSLS, KC_LBRC, KC_LCBR, KC_LPRN, XXXXXXX,                      XXXXXXX, KC_RPRN, KC_RCBR, KC_RBRC, KC_PIPE,
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+     KC_GRAVE, KC_PLUS,  KC_EQL,KC_QUOTE, XXXXXXX,                      XXXXXXX, KC_DQUO, KC_MINS, KC_UNDS,KC_TILDE,
+  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
+                                FUN(ESC), _______, _______,    _______, KC_RGUI, _______
+  //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
+  ),
+
+  [_FUN] = LAYOUT_split_3x5_3(
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+        KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                        KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
+      KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX,  KC_F11,                       KC_F12, XXXXXXX, KC_MPRV, KC_MNXT, KC_MPLY,
+  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
       XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,                      XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
-  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-      XXXXXXX, KC_HOME, KC_PGDN, KC_PGUP,  KC_END,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX,
-  //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-      XXXXXXX, KC_MUTE, KC_VOLD, KC_VOLU, XXXXXXX,                      XXXXXXX, KC_MPRV, KC_MNXT, KC_MPLY, XXXXXXX,
   //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
                                  _______, _______, _______,    _______, _______, _______
   //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
@@ -196,12 +181,6 @@ void oled_render_status(void) {
     oled_write_ln_P(PSTR("WPM"), false);
     oled_write_ln_P(PSTR("--"), false);
     oled_write_ln(wpm, false);
-    oled_write_ln("", false);
-
-    led_t led_state = host_keyboard_led_state();
-    oled_write_ln_P(PSTR("CAP"), false);
-    oled_write_ln_P(PSTR("--"), false);
-    oled_write_ln_P(led_state.caps_lock ? PSTR("YES") : PSTR("NO"), false);
 }
 
 uint16_t timer;
