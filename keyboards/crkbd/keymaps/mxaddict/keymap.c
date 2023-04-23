@@ -52,6 +52,7 @@ static const char* layer_names[] = {
 #define DESK LGUI(KC_D)
 #define RUN LGUI(KC_R)
 #define SEARCH LGUI(KC_S)
+#define LOCK LGUI(KC_L)
 
 #define C_TAB C(TAB)
 #define CS_TAB C(S(TAB))
@@ -60,7 +61,7 @@ static const char* layer_names[] = {
 
 #define NAV(kc) LT(_NAV, kc)
 #define NUM(kc) LT(_NUM, kc)
-#define FUN(kc) LT(_NUM, kc)
+#define FUN(kc) LT(_FUN, kc)
 
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -80,7 +81,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
          QUIT,   CLOSE,  CS_TAB,   C_TAB,  RELOAD,                        TASKS,    CALC,   PRINT,     RUN,  SEARCH,
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-       SELECT,    SAVE, CSA_TAB,  CA_TAB,   FILES,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT, XXXXXXX,
+       SELECT,    SAVE, CSA_TAB,  CA_TAB,   FILES,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT,    LOCK,
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
          UNDO,     CUT,    COPY,   PASTE,    DESK,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX,
   //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
