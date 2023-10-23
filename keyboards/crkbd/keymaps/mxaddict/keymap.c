@@ -53,6 +53,7 @@ static const char* layer_names[] = {
 #define RUN LGUI(KC_R)
 #define SEARCH LGUI(KC_S)
 #define LOCK LGUI(KC_L)
+#define BOLD C(KC_B)
 
 #define C_TAB C(TAB)
 #define CS_TAB C(S(TAB))
@@ -81,9 +82,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
          QUIT,   CLOSE,  CS_TAB,   C_TAB,  RELOAD,                        TASKS,    CALC,   PRINT,     RUN,  SEARCH,
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-       SELECT,    SAVE, CSA_TAB,  CA_TAB,   FILES,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT,    LOCK,
+       SELECT,    SAVE, CSA_TAB,  CA_TAB,   FILES,                      KC_LEFT, KC_DOWN,   KC_UP,KC_RIGHT,    DESK,
   //+--------+--------+--------+--------+--------+                    +--------+--------+--------+--------+--------+
-         UNDO,     CUT,    COPY,   PASTE,    DESK,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END, XXXXXXX,
+         UNDO,     CUT,    COPY,   PASTE,    BOLD,                      KC_HOME, KC_PGDN, KC_PGUP,  KC_END,    LOCK,
   //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
                                  _______, _______, _______,    _______, _______,FUN(TAB)
   //+--------+--------+--------+--------+--------+--------+  +--------+--------+--------+--------+--------+--------+
