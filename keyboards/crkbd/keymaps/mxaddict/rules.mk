@@ -7,6 +7,9 @@ OLED_ENABLE     = yes
 # Enable words per minute
 WPM_ENABLE      = yes
 
+# Enable via
+VIA_ENABLE      = yes
+
 # Disable mousekey and RGB
 MOUSEKEY_ENABLE = no
 RGBLIGHT_ENABLE = no
